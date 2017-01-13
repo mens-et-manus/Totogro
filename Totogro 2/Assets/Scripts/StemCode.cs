@@ -3,12 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StemGrower : MonoBehaviour
+public class StemCode: MonoBehaviour
 {
 
     public GameObject stem;
     public Rigidbody leaf;
-
+    
     // Use this for initialization
     void Start()
     {
@@ -46,6 +46,7 @@ public class StemGrower : MonoBehaviour
 
     void MakeLeaf()
     {
-        Rigidbody leafClone = (Rigidbody)Instantiate(leaf, new Vector3(1, 1, 1), transform.rotation);
+        var cornerOne = transform.TransformPoint(new Vector3(transform.localScale.x, transform.localScale.y, transform.localScale.z));
+        Rigidbody leafClone = (Rigidbody)Instantiate(leaf, cornerOne, transform.rotation);
     }
 }
