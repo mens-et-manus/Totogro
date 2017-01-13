@@ -7,6 +7,7 @@ public class StemGrower : MonoBehaviour
 {
 
     public GameObject stem;
+    public Rigidbody leaf;
 
     // Use this for initialization
     void Start()
@@ -14,17 +15,18 @@ public class StemGrower : MonoBehaviour
         // Locate a stem
         stem = GameObject.Find("Stem");
         stem.gameObject.transform.localScale = new Vector3(1, 1, 1);
+        MakeLeaf();
     }
 
     // Update is called once per frame
     void Update()
     {
         // Connect True values to arrow keys
-        bool growVertical = Input.GetKey("up");
-        bool resetVertical = Input.GetKey("down");
+        bool growStem = Input.GetKey("up");
+        bool resetStem = Input.GetKey("down");
 
         // If True for grow
-        if (growVertical)
+        if (growStem)
         {
             // Check tags to see if object can grow
             if (gameObject.CompareTag("Growable"))
@@ -35,11 +37,15 @@ public class StemGrower : MonoBehaviour
         }
 
         // If True for reset
-        if (resetVertical)
+        if (resetStem)
         {
             // Reset object to 1,1,1
             stem.gameObject.transform.localScale = new Vector3(1, 1, 1);
         }
     }
 
+    void MakeLeaf()
+    {
+        Rigidbody leafClone = (Rigidbody)Instantiate(leaf, new Vector3(1, 1, 1), transform.rotation);
+    }
 }
