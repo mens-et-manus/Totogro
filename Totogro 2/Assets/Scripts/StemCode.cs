@@ -46,10 +46,7 @@ public class StemCode: MonoBehaviour
 
     void MakeLeaf()
     {
-        var cornerOne = transform.TransformPoint(new Vector3((float) 0.5*transform.localScale.x, (float)0.5 * transform.localScale.y, (float)0.5 * transform.localScale.z));
-        Debug.Log("Test-1");
-        Instantiate(leaf, cornerOne, Quaternion.identity);
-        Debug.Log("Test-2");
+        Instantiate(leaf, transform.position, Quaternion.identity);
 
     }
 }
