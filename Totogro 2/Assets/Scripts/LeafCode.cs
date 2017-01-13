@@ -13,10 +13,17 @@ public class leafCode: MonoBehaviour {
     //    Destroy(gameObject);
     //}
 
+    private void Start()
+    {
+        leaf = GameObject.Find("Leaf").GetComponent<Rigidbody>();  
+        stem = GameObject.Find("Stem");
+        Debug.Log("HIHIHI");
+    }
+
     void Update ()
     {
-        var cornerOne = stem.gameObject.transform.TransformPoint(new Vector3(transform.localScale.x, transform.localScale.y, transform.localScale.z));
-        transform.position = cornerOne;
+        var cornerOne = stem.gameObject.transform.TransformPoint(new Vector3((float) 0.5* transform.localScale.x, (float)0.5* transform.localScale.y, (float)0.5 * transform.localScale.z));
+        leaf.transform.position = cornerOne;
         Debug.Log("HIHIHI");
     }
 }

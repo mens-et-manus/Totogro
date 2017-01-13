@@ -7,7 +7,7 @@ public class StemCode: MonoBehaviour
 {
 
     public GameObject stem;
-    public Rigidbody leaf;
+    public GameObject leaf;
     
     // Use this for initialization
     void Start()
@@ -46,7 +46,10 @@ public class StemCode: MonoBehaviour
 
     void MakeLeaf()
     {
-        var cornerOne = transform.TransformPoint(new Vector3(transform.localScale.x, transform.localScale.y, transform.localScale.z));
-        Rigidbody leafClone = (Rigidbody)Instantiate(leaf, cornerOne, transform.rotation);
+        var cornerOne = transform.TransformPoint(new Vector3((float) 0.5*transform.localScale.x, (float)0.5 * transform.localScale.y, (float)0.5 * transform.localScale.z));
+        Debug.Log("Test-1");
+        Instantiate(leaf, cornerOne, Quaternion.identity);
+        Debug.Log("Test-2");
+
     }
 }
