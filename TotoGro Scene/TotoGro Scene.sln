@@ -1,0 +1,29 @@
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2008
+
+Project("{4440DAED-69F5-99B7-1863-CB1477275121}") = "TotoGro Scene", "Assembly-CSharp-firstpass.csproj", "{6A7516F0-90E4-18B8-40F8-E69707C095D2}"
+EndProject
+Project("{4440DAED-69F5-99B7-1863-CB1477275121}") = "TotoGro Scene", "Assembly-CSharp-Editor-firstpass.csproj", "{AD29F585-E09F-F6F5-CC9A-824973B2ED40}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6A7516F0-90E4-18B8-40F8-E69707C095D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A7516F0-90E4-18B8-40F8-E69707C095D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A7516F0-90E4-18B8-40F8-E69707C095D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A7516F0-90E4-18B8-40F8-E69707C095D2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AD29F585-E09F-F6F5-CC9A-824973B2ED40}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD29F585-E09F-F6F5-CC9A-824973B2ED40}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD29F585-E09F-F6F5-CC9A-824973B2ED40}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD29F585-E09F-F6F5-CC9A-824973B2ED40}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = Assembly-CSharp.csproj
+	EndGlobalSection
+EndGlobal
