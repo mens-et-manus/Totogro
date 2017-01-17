@@ -49,6 +49,6 @@ public class StemCode: MonoBehaviour
     void MakeLeaf()
     {
         Instantiate(leaf, transform.position, Quaternion.identity);
-
+        //Instantiate(leaf, transform.position, (float)(Quaternion.Angle+180));
     }
 }

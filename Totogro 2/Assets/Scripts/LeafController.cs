@@ -21,8 +21,11 @@ public class LeafController : MonoBehaviour
 
     void Update()
     {
-        Vector3 cornerOne = (new Vector3((float)(stem.transform.localScale.x*0.75), (float)(stem.transform.localScale.y*0.5), (float)(stem.transform.localScale.z*0.75)));
+        Vector3 cornerOne = (new Vector3((float)(gameObject.transform.localScale.x*0.5*0.707), (float)((stem.transform.localScale.y*0.5)+(transform.localScale.x*0.333)), (float)(stem.transform.localPosition.z)));
         transform.position = cornerOne;
+        Quaternion rot = new Quaternion();
+        rot.eulerAngles = new Vector3(0,0,45);
+        transform.rotation = rot;
 
         //Debug.Log("HIHIHI");
         // Grow functionality for leaves
@@ -37,7 +40,7 @@ public class LeafController : MonoBehaviour
             if (gameObject.CompareTag("Growable"))
             {
                 // Grow in unit jumps
-                leaf.gameObject.transform.localScale += new Vector3(0, 1, 0);
+                gameObject.transform.localScale += new Vector3(0.1f, 0, 0);
             }
         }
 
@@ -45,7 +48,7 @@ public class LeafController : MonoBehaviour
         if (resetLeaf)
         {
             // Reset object to 1,1,1
-            leaf.gameObject.transform.localScale = new Vector3(1, 1, 1);
+            gameObject.transform.localScale = new Vector3(1, 1, 1);
         }
     }
 }
