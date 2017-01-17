@@ -42,6 +42,8 @@ public class StemCode: MonoBehaviour
             // Reset object to 1,1,1
             stem.gameObject.transform.localScale = new Vector3(1, 1, 1);
         }
+
+
     }
 
     void MakeLeaf()
