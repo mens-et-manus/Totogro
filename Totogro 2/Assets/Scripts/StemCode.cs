@@ -49,6 +49,10 @@ public class StemCode: MonoBehaviour
     void MakeLeaf()
     {
         Instantiate(leaf, transform.position, Quaternion.identity);
-        //Instantiate(leaf, transform.position, (float)(Quaternion.Angle+180));
+
+        Vector3 rot = transform.rotation.eulerAngles;
+        rot = new Vector3(rot.x, rot.y +180, rot.z);
+        Debug.Log(Quaternion.Euler(rot));
+        Instantiate(leaf, transform.position, Quaternion.Euler(rot));
     }
 }
