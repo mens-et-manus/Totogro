@@ -4,19 +4,25 @@ using UnityEngine;
 
 public class LeafController : MonoBehaviour
 {
-
     private GameObject stem;
-
-    //void OnTriggerExit(Collider stem)
-    //{
-    // Destroy everything that leaves the trigger
-    //    Destroy(gameObject);
-    //}
+    private GameObject LeftHand;
+    private GameObject RightHand;
+    private GameObject Head;
+    private bool growLeaf = false;
+    private bool resetLeaf = false;
+    private Vector3 LeftHandPosition;
+    private Vector3 RightHandPosition;
+    public float HandDistance = 1;
+    public float HandSpeed = 1;
 
     private void Start()
     {
-        stem = GameObject.Find("Stem");
-        Debug.Log("HIHIHI");
+        stem = GameObject.FindGameObjectWithTag("Stem");
+        LeftHand = GameObject.FindGameObjectWithTag("LeftHandTag");
+        RightHand = GameObject.FindGameObjectWithTag("RightHandTag");
+        Head = GameObject.FindGameObjectWithTag("HeadTag");
+        LeftHandPosition = LeftHand.transform.position;
+        RightHandPosition = RightHand.transform.position;
     }
 
     void Update()
@@ -26,22 +32,19 @@ public class LeafController : MonoBehaviour
         Quaternion rot = new Quaternion();
         rot.eulerAngles = new Vector3(0,0,45);
         transform.rotation = rot;
-
-        //Debug.Log("HIHIHI");
+        
         // Grow functionality for leaves
         // Connect True values to arrow keys
-        bool growLeaf = Input.GetKey("right");
-        bool resetLeaf = Input.GetKey("left");
+        // growLeaf = Input.GetKey("right"); //non-kinect
+        resetLeaf = Input.GetKey("left");
 
         // If True for grow
         if (growLeaf)
         {
-            // Check tags to see if object can grow
-            if (gameObject.CompareTag("Growable"))
-            {
-                // Grow in unit jumps
-                gameObject.transform.localScale += new Vector3(0.1f, 0, 0);
-            }
+         
+            // Grow in unit jumps
+            gameObject.transform.localScale += new Vector3(0.1f, 0, 0);
+            
         }
 
         // If True for reset
@@ -50,5 +53,16 @@ public class LeafController : MonoBehaviour
             // Reset object to 1,1,1
             gameObject.transform.localScale = new Vector3(1, 1, 1);
         }
+    }
+
+    private void FixedUpdate()
+    {
+        Vector3 LeftHandVelocity = (LeftHandPosition - LeftHand.transform.position) / Time.deltaTime;
+        Vector3 RightHandVelocity = (RightHandPosition - RightHand.transform.position) / Time.deltaTime;
+
+        growLeaf = (Vector3.Distance(LeftHand.transform.position, RightHand.transform.position) > HandDistance) && (Mathf.Abs(LeftHandVelocity.x) > HandSpeed) && (Mathf.Abs(RightHandVelocity.x) > HandSpeed) && (RightHand.transform.position.y<Head.transform.position.y) && (LeftHand.transform.position.y<Head.transform.position.y);
+
+        LeftHandPosition = LeftHand.transform.position;
+        RightHandPosition = RightHand.transform.position;
     }
 }
