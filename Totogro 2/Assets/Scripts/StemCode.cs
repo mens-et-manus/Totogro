@@ -6,7 +6,7 @@ using UnityEngine;
 public class StemCode: MonoBehaviour
 {
 
-    public GameObject stem;
+    private GameObject stem;
     public GameObject leaf;
     private GameObject LeftHand;
     private GameObject RightHand;
@@ -22,9 +22,11 @@ public class StemCode: MonoBehaviour
     void Awake()
     {
         // Locate a stem
-        stem = GameObject.FindGameObjectWithTag("Stem");
+        stem = GameObject.FindGameObjectWithTag("ActiveStem");
+
         stem.gameObject.transform.localScale = new Vector3(1, 1, 1);
-        MakeLeaf();
+        
+        
         LeftHand = GameObject.FindGameObjectWithTag("LeftHandTag");
         RightHand = GameObject.FindGameObjectWithTag("RightHandTag");
         LeftHandPosition = LeftHand.transform.position;
@@ -34,12 +36,15 @@ public class StemCode: MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        stem = GameObject.FindGameObjectWithTag("ActiveStem");
+        leaf = GameObject.FindGameObjectWithTag("ActiveLeaf");
+
+
         // Connect True values to arrow keys
-        //growStem = Input.GetKey("up"); //non-kinect
         resetStem = Input.GetKey("down");
 
         // If True for grow
-        if (growStem)
+        if (growStem| Input.GetKey("up"))
         {
             // Grow in unit jumps
             stem.gameObject.transform.localScale += new Vector3(0, 1, 0);
@@ -75,13 +80,5 @@ public class StemCode: MonoBehaviour
         
     }
 
-    void MakeLeaf()
-    {
-        Instantiate(leaf, transform.position, Quaternion.identity);
-
-        Vector3 rot = transform.rotation.eulerAngles;
-        rot = new Vector3(rot.x, rot.y +180, rot.z);
-        Debug.Log(Quaternion.Euler(rot));
-        Instantiate(leaf, transform.position, Quaternion.Euler(rot));
-    }
+   
 }

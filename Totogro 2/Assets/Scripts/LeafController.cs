@@ -5,6 +5,7 @@ using UnityEngine;
 public class LeafController : MonoBehaviour
 {
     private GameObject stem;
+    private GameObject leaf;
     private GameObject LeftHand;
     private GameObject RightHand;
     private GameObject Head;
@@ -14,44 +15,59 @@ public class LeafController : MonoBehaviour
     private Vector3 RightHandPosition;
     public float HandDistance = 1;
     public float HandSpeed = 1;
+    
 
-    private void Start()
+    private void Awake()
     {
-        stem = GameObject.FindGameObjectWithTag("Stem");
+        leaf = GameObject.FindGameObjectWithTag("ActiveLeaf");
+        stem = GameObject.FindGameObjectWithTag("ActiveStem");
         LeftHand = GameObject.FindGameObjectWithTag("LeftHandTag");
         RightHand = GameObject.FindGameObjectWithTag("RightHandTag");
         Head = GameObject.FindGameObjectWithTag("HeadTag");
         LeftHandPosition = LeftHand.transform.position;
         RightHandPosition = RightHand.transform.position;
+        
     }
 
     void Update()
     {
-        Vector3 cornerOne = (new Vector3((float)(gameObject.transform.localScale.x*0.5*0.707), (float)((stem.transform.localScale.y*0.5)+(transform.localScale.x*0.333)), (float)(stem.transform.localPosition.z)));
-        transform.position = cornerOne;
-        Quaternion rot = new Quaternion();
-        rot.eulerAngles = new Vector3(0,0,45);
-        transform.rotation = rot;
-        
-        // Grow functionality for leaves
-        // Connect True values to arrow keys
-        // growLeaf = Input.GetKey("right"); //non-kinect
-        resetLeaf = Input.GetKey("left");
-
-        // If True for grow
-        if (growLeaf)
+        leaf = GameObject.FindGameObjectWithTag("ActiveLeaf");
+        stem = GameObject.FindGameObjectWithTag("ActiveStem");
+        if (leaf)
         {
-         
-            // Grow in unit jumps
-            gameObject.transform.localScale += new Vector3(0.1f, 0, 0);
-            
-        }
+            Vector3 cornerOne = (new Vector3((float)(InstantiateLeaf.direction*leaf.transform.localScale.x * 0.5 * 0.707), (float)((stem.transform.position.y+stem.transform.localScale.y*0.5) + (leaf.transform.localScale.x * 0.333)), (float)(stem.transform.localPosition.z)));
+            leaf.transform.position = cornerOne;
+            Quaternion rot = new Quaternion();
+            rot.eulerAngles = new Vector3(0, 0, InstantiateLeaf.direction*45);
+            leaf.transform.rotation = rot;
+            // Grow functionality for leaves
+            // Connect True values to arrow keys
+            resetLeaf = Input.GetKey("left");
 
-        // If True for reset
-        if (resetLeaf)
-        {
-            // Reset object to 1,1,1
-            gameObject.transform.localScale = new Vector3(1, 1, 1);
+            // If True for grow
+            if (growLeaf | Input.GetKey("right"))
+            {
+
+                // Grow in unit jumps
+                leaf.transform.localScale += new Vector3(0.1f, 0, 0);
+
+            }
+
+            // If True for reset
+            if (resetLeaf)
+            {
+                // Reset object to 1,1,1
+                leaf.transform.localScale = new Vector3(1, 1, 1);
+            }
+            if (leaf.transform.localScale.x > 3|stem.transform.localScale.y>5)
+            {
+                GameObject NewStem = stem;
+                leaf.gameObject.tag = "Leaf";
+                stem.gameObject.tag = "Stem";
+                    
+                var temp = Instantiate(NewStem, new Vector3(0, (float)(stem.transform.position.y+0.5*stem.transform.localScale.y), 0), Quaternion.Euler(0,Random.Range(0f,360f),0));
+                temp.tag = "ActiveStem";
+            }
         }
     }
 
@@ -64,5 +80,6 @@ public class LeafController : MonoBehaviour
 
         LeftHandPosition = LeftHand.transform.position;
         RightHandPosition = RightHand.transform.position;
+        
     }
 }

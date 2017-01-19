@@ -81,6 +81,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\InstantiateLeaf.cs" />
     <Compile Include="Assets\JumpDetector.cs" />
     <Compile Include="Assets\KinectStuff\FollowJoint.cs" />
     <Compile Include="Assets\KinectStuff\KinectScripts\BodySourceManager.cs" />
@@ -94,6 +95,7 @@
     <Compile Include="Assets\KinectStuff\KinectScripts\InfraredSourceManager.cs" />
     <Compile Include="Assets\KinectStuff\KinectScripts\InfraredSourceView.cs" />
     <Compile Include="Assets\KinectStuff\KinectScripts\MultiSourceManager.cs" />
+    <Compile Include="Assets\ResetPrefabScale.cs" />
     <Compile Include="Assets\Scripts\LeafController.cs" />
     <Compile Include="Assets\Scripts\StemCode.cs" />
   </ItemGroup>
