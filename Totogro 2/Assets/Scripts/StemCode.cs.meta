@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 2c640e3fa3681ed43ab65a84f3411488
+timeCreated: 1484329883
+licenseType: Free
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - stem: {fileID: 1814767573024534, guid: 2009fabce36e00b47b3207023e7dd121, type: 2}
+  - leaf: {fileID: 54786701780054060, guid: 64884d7d06580f1429022585819924e5, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
